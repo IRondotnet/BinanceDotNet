@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using BinanceExchange.API.Converter;
-using BinanceExchange.API.Models.Response.Interfaces;
+﻿using System.Runtime.Serialization;
 
 namespace BinanceExchange.API.Models.Response
 {
-    [DataContract]
+   [DataContract]
     public class ExchangeInfoRateLimit
     {
         [DataMember(Order = 1)]
@@ -17,6 +12,9 @@ namespace BinanceExchange.API.Models.Response
         public string Interval { get; set; }
 
         [DataMember(Order = 3)]
+        public int IntervalNum { get; set; }
+
+        [DataMember(Order = 4)]
         public int Limit { get; set; }
     }
 }

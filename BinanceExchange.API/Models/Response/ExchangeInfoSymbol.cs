@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using BinanceExchange.API.Converter;
 using BinanceExchange.API.Enums;
-using BinanceExchange.API.Models.Response.Interfaces;
 using Newtonsoft.Json.Converters;
 
 namespace BinanceExchange.API.Models.Response
 {
-    [DataContract]
+   [DataContract]
     public class ExchangeInfoSymbol
     {
         [DataMember(Order = 1)]
