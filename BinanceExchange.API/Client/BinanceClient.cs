@@ -38,12 +38,17 @@ namespace BinanceExchange.API.Client
         /// </summary>
         /// <param name="configuration"></param>
         /// <param name="apiCache"></param>
-        public BinanceClient(ClientConfiguration configuration, IAPIProcessor apiProcessor = null)
+        public BinanceClient(IClientConfiguration configuration, IAPIProcessor apiProcessor = null)
         {
             _logger = configuration.Logger ?? LogManager.GetLogger(typeof(BinanceClient));
             Guard.AgainstNull(configuration);
             Guard.AgainstNullOrEmpty(configuration.ApiKey);
             Guard.AgainstNull(configuration.SecretKey);
+
+            if(!string.IsNullOrWhiteSpace(configuration.ApiUrl))
+            {
+               Endpoints.APIBaseUrl = configuration.ApiUrl;
+            }
 
             _defaultReceiveWindow = configuration.DefaultReceiveWindow;
             _apiKey = configuration.ApiKey;

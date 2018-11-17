@@ -89,6 +89,13 @@ namespace BinanceExchange.API.Client.Interfaces
         Task<BaseCreateOrderResponse> CreateOrder(CreateOrderRequest request);
 
         /// <summary>
+        /// Creates a test order based on the provided request
+        /// </summary>
+        /// <param name="request">The <see cref="CreateOrderRequest"/> that is used to define the test order</param>
+        /// <returns></returns>
+        Task<EmptyResponse> CreateTestOrder(CreateOrderRequest request);
+
+        /// <summary>
         /// Queries an order based on the provided request
         /// </summary>
         /// <param name="request">The <see cref="QueryOrderRequest"/> that is used to define the order</param>
