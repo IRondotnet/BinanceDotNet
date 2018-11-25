@@ -35,7 +35,7 @@ namespace BinanceExchange.API
         /// </summary>
         internal static string WAPIBaseUrl = "https://api.binance.com/wapi";
 
-        private static string APIPrefix { get; } = $"{APIBaseUrl}";
+        private static string APIPrefix => APIBaseUrl;
         private static string WAPIPrefix { get; } = $"{WAPIBaseUrl}";
 
         public static class UserStream
