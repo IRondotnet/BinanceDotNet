@@ -21,11 +21,14 @@ namespace BinanceExchange.API.Converter
             var value = jObject.ToObject<ExchangeInfoSymbolFilter>();
 
             ExchangeInfoSymbolFilter item = null;
-            
+
             switch (value.FilterType)
             {
                 case ExchangeInfoSymbolFilterType.PriceFilter:
                     item = new ExchangeInfoSymbolFilterPrice();
+                    break;
+                case ExchangeInfoSymbolFilterType.PercentPrice:
+                    item = new ExchangeInfoSymbolFilterPercentPrice();
                     break;
                 case ExchangeInfoSymbolFilterType.LotSize:
                     item = new ExchangeInfoSymbolFilterLotSize();
@@ -33,8 +36,26 @@ namespace BinanceExchange.API.Converter
                 case ExchangeInfoSymbolFilterType.MinNotional:
                     item = new ExchangeInfoSymbolFilterMinNotional();
                     break;
+                case ExchangeInfoSymbolFilterType.MaxNumOrders:
+                    item = new ExchangeInfoSymbolFilterMaxNumOrders();
+                    break;
                 case ExchangeInfoSymbolFilterType.MaxNumAlgoOrders:
                     item = new ExchangeInfoSymbolFilterMaxNumAlgoOrders();
+                    break;
+                case ExchangeInfoSymbolFilterType.MarketLotSize:
+                    item = new ExchangeInfoSymbolFilterMarketLotSize();
+                    break;
+                case ExchangeInfoSymbolFilterType.ExchangeMaxNumOrders:
+                    item = new ExchangeInfoSymbolFilterExchangeMaxNumOrders();
+                    break;
+                case ExchangeInfoSymbolFilterType.ExchangeMaxNumAlgoOrders:
+                    item = new ExchangeInfoSymbolFilterExchangeMaxNumAlgoOrders();
+                    break;
+                case ExchangeInfoSymbolFilterType.MaxNumIcebergOrders:
+                    item = new ExchangeInfoSymbolFilterMaxNumIcebergOrders();
+                    break;
+                case ExchangeInfoSymbolFilterType.PercentagePrice:
+                    item = new ExchangeInfoSymbolFilterPercentagePrice();
                     break;
                 case ExchangeInfoSymbolFilterType.IcebergParts:
                     item = new ExchangeInfoSymbolFilterIcebergParts();

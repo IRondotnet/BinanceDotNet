@@ -3,7 +3,7 @@
 namespace BinanceExchange.API.Models.Response
 {
     [DataContract]
-    public class ExchangeInfoSymbolFilterIcebergParts : ExchangeInfoSymbolFilter
+    public class ExchangeInfoSymbolFilterExchangeMaxNumOrders : ExchangeInfoSymbolFilter
     {
         [DataMember(Order = 1)]
         public int Limit { get; set; }
