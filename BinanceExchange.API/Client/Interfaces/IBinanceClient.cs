@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BinanceExchange.API.Models.Request;
@@ -7,18 +6,13 @@ using BinanceExchange.API.Models.Response.Abstract;
 
 namespace BinanceExchange.API.Client.Interfaces
 {
-    public interface IBinanceClient
-    {
+   public interface IBinanceClient
+   {
         /// <summary>
         /// Starts a user data stream
         /// </summary>
         /// /// <returns><see cref="UserDataStreamResponse"/></returns>
         Task<UserDataStreamResponse> StartUserDataStream();
-
-        /// <summary>
-        /// Gets or sets the Timestamp offset of the Binance Client
-        /// </summary>
-        TimeSpan TimestampOffset { get; set; }
 
         /// <summary>
         /// Pings a user data stream to prevent timeouts

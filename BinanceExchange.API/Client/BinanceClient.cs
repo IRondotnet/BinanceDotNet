@@ -18,15 +18,6 @@ namespace BinanceExchange.API.Client
     /// </summary>
     public class BinanceClient : IBinanceClient
     {
-        public TimeSpan TimestampOffset {
-            get => _timestampOffset;
-            set
-            {
-                _timestampOffset = value;
-                RequestClient.SetTimestampOffset(_timestampOffset);
-            }
-        }
-        private TimeSpan _timestampOffset;
         private readonly string _apiKey;
         private readonly string _secretKey;
         private readonly IAPIProcessor _apiProcessor;
@@ -414,5 +405,5 @@ namespace BinanceExchange.API.Client
 
             return receiveWindow;
         }
-    }
+   }
 }

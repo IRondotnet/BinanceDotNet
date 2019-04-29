@@ -54,9 +54,6 @@ namespace BinanceExchange.API.Converter
                 case ExchangeInfoSymbolFilterType.MaxNumIcebergOrders:
                     item = new ExchangeInfoSymbolFilterMaxNumIcebergOrders();
                     break;
-                case ExchangeInfoSymbolFilterType.PercentagePrice:
-                    item = new ExchangeInfoSymbolFilterPercentagePrice();
-                    break;
                 case ExchangeInfoSymbolFilterType.IcebergParts:
                     item = new ExchangeInfoSymbolFilterIcebergParts();
                     break;

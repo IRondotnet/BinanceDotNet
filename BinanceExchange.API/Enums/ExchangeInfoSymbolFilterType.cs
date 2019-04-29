@@ -33,8 +33,6 @@ namespace BinanceExchange.API.Enums
         [EnumMember(Value = "EXCHANGE_MAX_NUM_ALGO_ORDERS")]
         ExchangeMaxNumAlgoOrders,
         #endregion
-        [EnumMember(Value = "PERCENT_PRICE")]
-        PercentagePrice,
         [EnumMember(Value = "ICEBERG_PARTS")]
         IcebergParts,
     }
