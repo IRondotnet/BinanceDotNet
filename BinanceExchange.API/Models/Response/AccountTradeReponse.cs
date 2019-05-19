@@ -42,5 +42,9 @@ namespace BinanceExchange.API.Models.Response
 
         [DataMember(Order = 9)]
         public long OrderId { get; set; }
+
+        [DataMember(Order = 10)]
+        [JsonProperty(PropertyName = "quoteQty")]
+        public decimal QuoteQuantity { get; set; }
     }
 }
