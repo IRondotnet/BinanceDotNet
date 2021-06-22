@@ -23,6 +23,8 @@ namespace BinanceExchange.API.Enums
         MaxNumAlgoOrders,
         [EnumMember(Value = "MAX_NUM_ICEBERG_ORDERS")]
         MaxNumIcebergOrders,
+        [EnumMember(Value = "MAX_POSITION")]
+        MaxPosition,
 
         #endregion
 
