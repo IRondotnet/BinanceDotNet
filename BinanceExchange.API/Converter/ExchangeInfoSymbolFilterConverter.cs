@@ -57,6 +57,9 @@ namespace BinanceExchange.API.Converter
                 case ExchangeInfoSymbolFilterType.IcebergParts:
                     item = new ExchangeInfoSymbolFilterIcebergParts();
                     break;
+                case ExchangeInfoSymbolFilterType.MaxPosition:
+                    item = new ExchangeInfoSymbolFilterMaxPosition();
+                    break;
             }
 
             serializer.Populate(jObject.CreateReader(), item);
