@@ -36,6 +36,18 @@ namespace BinanceExchange.API.Models.Response
         public bool IcebergAllowed { get; set; }
 
         [DataMember(Order = 9)]
+        public bool OcoAllowed { get; set; }
+
+        [DataMember(Order = 10)]
+        public bool QuoteOrderQtyMarketAllowed { get; set; }
+
+        [DataMember(Order = 11)]
+        public bool IsSpotTradingAllowed { get; set; }
+
+        [DataMember(Order = 12)]
+        public bool IsMarginTradingAllowed { get; set; }
+
+        [DataMember(Order = 13)]
         [JsonProperty(ItemConverterType = typeof(ExchangeInfoSymbolFilterConverter))]
         public List<ExchangeInfoSymbolFilter> Filters { get; set; }
     }
