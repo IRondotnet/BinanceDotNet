@@ -60,6 +60,9 @@ namespace BinanceExchange.API.Converter
                 case ExchangeInfoSymbolFilterType.MaxPosition:
                     item = new ExchangeInfoSymbolFilterMaxPosition();
                     break;
+                case ExchangeInfoSymbolFilterType.TrailingDelta:
+                    item = new ExchangeInfoSymbolFilterTrailingDelta();
+                    break;
             }
 
             serializer.Populate(jObject.CreateReader(), item);
