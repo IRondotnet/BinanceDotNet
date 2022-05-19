@@ -39,8 +39,9 @@ namespace BinanceExchange.API.Websockets
         protected readonly IBinanceClient BinanceClient;
         protected ILog Logger;
 
-        protected const string AccountEventType = "outboundAccountInfo";
+        protected const string AccountEventType = "outboundAccountPosition";
         protected const string OrderTradeEventType = "executionReport";
+        protected const string BalanceUpdateEventType = "balanceUpdate";
         public string ListenKey { get; private set; }
 
         public AbstractBinanceWebSocketClient(IBinanceClient binanceClient, ILog logger = null)
@@ -225,6 +226,8 @@ namespace BinanceExchange.API.Websockets
                         {
                             userDataWebSocketMessages.OrderUpdateMessageHandler?.Invoke(orderTradeData);
                         }
+                        break;
+                    case BalanceUpdateEventType:
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

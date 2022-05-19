@@ -14,9 +14,9 @@
     <PackageLicenseUrl>https://github.com/glitch100/BinanceDotNet/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/glitch100/BinanceDotNet</RepositoryUrl>
     <PackageIconUrl>https://i.imgur.com/x2YPVe6.png</PackageIconUrl>
-    <PackageReleaseNotes>Another fix for ExchangeInfoSymbol.</PackageReleaseNotes>
-    <AssemblyVersion>4.12.1.0</AssemblyVersion>
-    <FileVersion>4.12.1.0</FileVersion>
+    <PackageReleaseNotes>Userdata websocket fix.</PackageReleaseNotes>
+    <AssemblyVersion>4.12.1.1</AssemblyVersion>
+    <FileVersion>4.12.1.1</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
