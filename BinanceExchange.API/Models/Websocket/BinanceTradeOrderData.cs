@@ -48,6 +48,9 @@ namespace BinanceExchange.API.Models.WebSocket
         [JsonProperty(PropertyName = "p")]
         public decimal Price { get; set; }
 
+        [JsonProperty(PropertyName = "C")]
+        public string OriginalClientOrderId { get; set; }
+
         #region Undefined API Result fields
         //TODO: Update when Binance API updated
         [JsonProperty(PropertyName = "P")]
@@ -58,9 +61,6 @@ namespace BinanceExchange.API.Models.WebSocket
         
         [JsonProperty(PropertyName = "g")]
         public string G { get; set; }
-        
-        [JsonProperty(PropertyName = "C")]
-        public string C { get; set; }
         #endregion
 
         [JsonProperty(PropertyName = "x")]
