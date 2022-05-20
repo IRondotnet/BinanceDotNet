@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using BinanceExchange.API.Enums;
 using BinanceExchange.API.Models.WebSocket;
+using WebSocketSharp;
 
 namespace BinanceExchange.API.Websockets
 {
@@ -14,7 +15,7 @@ namespace BinanceExchange.API.Websockets
         /// <param name="interval"></param>
         /// <param name="messageEventHandler"></param>
         /// <returns></returns>
-        Guid ConnectToKlineWebSocket(string symbol, KlineInterval interval, BinanceWebSocketMessageHandler<BinanceKlineData> messageEventHandler);
+        Guid ConnectToKlineWebSocket(string symbol, KlineInterval interval, BinanceWebSocketMessageHandler<BinanceKlineData> messageEventHandler, Action<CloseStatusCode> onClose = null);
 
         /// <summary>
         /// Connect to the Depth WebSocket
@@ -37,7 +38,7 @@ namespace BinanceExchange.API.Websockets
         /// </summary>
         /// <param name="userDataMessageHandlers"></param>
         /// <returns></returns>
-        Task<Guid> ConnectToUserDataWebSocket(UserDataWebSocketMessages userDataMessageHandlers);
+        Task<Guid> ConnectToUserDataWebSocket(UserDataWebSocketMessages userDataMessageHandlers, Action<CloseStatusCode> onClose = null);
 
         /// <summary>
         /// Close a specific WebSocket instance using the Guid provided on creation

@@ -6,6 +6,7 @@ using BinanceExchange.API.Client.Interfaces;
 using BinanceExchange.API.Enums;
 using BinanceExchange.API.Extensions;
 using BinanceExchange.API.Models.WebSocket;
+using BinanceExchange.API.Models.WebSocket.Error;
 using BinanceExchange.API.Utility;
 using log4net;
 using Newtonsoft.Json;
@@ -59,14 +60,14 @@ namespace BinanceExchange.API.Websockets
         /// <param name="userDataMessageHandlers"></param>
         /// <returns>Guid of connection.</returns>
         /// sets the Binance Listen Key (binanceListenKey)
-        public async Task<Guid> ConnectToUserDataWebSocket(UserDataWebSocketMessages userDataMessageHandlers)
+        public async Task<Guid> ConnectToUserDataWebSocket(UserDataWebSocketMessages userDataMessageHandlers, Action<CloseStatusCode> onClose = null)
         {
             Guard.AgainstNull(BinanceClient, nameof(BinanceClient));
             Logger.Debug("Connecting to User Data Web Socket");
             var streamResponse = await BinanceClient.StartUserDataStream();
             ListenKey = streamResponse.ListenKey;
             var endpoint = new Uri($"{BaseWebsocketUri}/{ListenKey}");
-            return CreateUserDataBinanceWebSocket(endpoint, userDataMessageHandlers);
+            return CreateUserDataBinanceWebSocket(endpoint, userDataMessageHandlers, onClose);
         }
 
 
@@ -77,12 +78,12 @@ namespace BinanceExchange.API.Websockets
         /// <param name="interval"></param>
         /// <param name="messageEventHandler"></param>
         /// <returns></returns>
-        public Guid ConnectToKlineWebSocket(string symbol, KlineInterval interval, BinanceWebSocketMessageHandler<BinanceKlineData> messageEventHandler)
+        public Guid ConnectToKlineWebSocket(string symbol, KlineInterval interval, BinanceWebSocketMessageHandler<BinanceKlineData> messageEventHandler, Action<CloseStatusCode> onClose = null)
         {
             Guard.AgainstNullOrEmpty(symbol, nameof(symbol));
             Logger.Debug("Connecting to Kline Web Socket");
             var endpoint = new Uri($"{BaseWebsocketUri}/{symbol.ToLower()}@kline_{EnumExtensions.GetEnumMemberValue(interval)}");
-            return CreateBinanceWebSocket(endpoint, messageEventHandler);
+            return CreateBinanceWebSocket(endpoint, messageEventHandler, onClose);
         }
 
         /// <summary>
@@ -199,7 +200,7 @@ namespace BinanceExchange.API.Websockets
             return CreateBinanceWebSocket(endpoint, messageEventHandler);
         }
 
-        private Guid CreateUserDataBinanceWebSocket(Uri endpoint, UserDataWebSocketMessages userDataWebSocketMessages)
+        private Guid CreateUserDataBinanceWebSocket(Uri endpoint, UserDataWebSocketMessages userDataWebSocketMessages, Action<CloseStatusCode> onClose = null)
         {
             var websocket = new BinanceWebSocket(endpoint.AbsoluteUri);
             websocket.OnOpen += (sender, e) =>
@@ -237,13 +238,22 @@ namespace BinanceExchange.API.Websockets
             {
                 Logger.Error($"WebSocket Error on {endpoint.AbsoluteUri}: ", e.Exception);
                 CloseWebSocketInstance(websocket.Id, true);
-                throw new Exception("Binance UserData WebSocket failed")
+                throw new BinanceWebsocketErrorException("Binance UserData WebSocket failed")
                 {
                     Data =
                     {
                         {"ErrorEventArgs", e}
                     }
                 };
+            };
+            websocket.OnClose += (sender, e) =>
+            {
+                Logger.Debug($"WebSocket Closed: {endpoint.AbsoluteUri}");
+
+                if (onClose != null)
+                {
+                    onClose((CloseStatusCode)e.Code);
+                }
             };
 
             if (!ActiveWebSockets.ContainsKey(websocket.Id))
@@ -258,7 +268,7 @@ namespace BinanceExchange.API.Websockets
             return websocket.Id;
         }
 
-        private Guid CreateBinanceWebSocket<T>(Uri endpoint, BinanceWebSocketMessageHandler<T> messageEventHandler) where T : IWebSocketResponse
+        private Guid CreateBinanceWebSocket<T>(Uri endpoint, BinanceWebSocketMessageHandler<T> messageEventHandler, Action<CloseStatusCode> onClose = null) where T : IWebSocketResponse
         {
             var websocket = new BinanceWebSocket(endpoint.AbsoluteUri);
             websocket.OnOpen += (sender, e) =>
@@ -276,13 +286,22 @@ namespace BinanceExchange.API.Websockets
             {
                 Logger.Debug($"WebSocket Error on {endpoint.AbsoluteUri}:", e.Exception);
                 CloseWebSocketInstance(websocket.Id, true);
-                throw new Exception("Binance WebSocket failed")
+                throw new BinanceWebsocketErrorException("Binance WebSocket failed")
                 {
                     Data =
                     {
                         {"ErrorEventArgs", e}
                     }
                 };
+            };
+            websocket.OnClose += (sender, e) =>
+            {
+                Logger.Debug($"WebSocket Closed: {endpoint.AbsoluteUri}");
+
+                if (onClose != null)
+                {
+                    onClose((CloseStatusCode)e.Code);
+                }
             };
 
             if (!ActiveWebSockets.ContainsKey(websocket.Id))
