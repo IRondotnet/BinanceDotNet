@@ -63,6 +63,12 @@ namespace BinanceExchange.API.Converter
                 case ExchangeInfoSymbolFilterType.TrailingDelta:
                     item = new ExchangeInfoSymbolFilterTrailingDelta();
                     break;
+                case ExchangeInfoSymbolFilterType.PercentPriceBySide:
+                    item = new ExchangeInfoSymbolFilterPercentPriceBySide();
+                    break;
+                case ExchangeInfoSymbolFilterType.ExchangeMaxNumIcebergOrders:
+                    item = new ExchangeInfoSymbolFilterExchangeMaxNumIcebergOrders();
+                    break;
             }
 
             serializer.Populate(jObject.CreateReader(), item);

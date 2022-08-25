@@ -29,7 +29,10 @@ namespace BinanceExchange.API.Enums
         MaxPosition,
         [EnumMember(Value = "TRAILING_DELTA")]
         TrailingDelta,
-
+        [EnumMember(Value = "PERCENTAGE_PRICE")]
+        PercentagePrice,
+        [EnumMember(Value = "PERCENT_PRICE_BY_SIDE")]
+        PercentPriceBySide,
         #endregion
 
         #region Exchange Filters
@@ -38,9 +41,8 @@ namespace BinanceExchange.API.Enums
         ExchangeMaxNumOrders,
         [EnumMember(Value = "EXCHANGE_MAX_NUM_ALGO_ORDERS")]
         ExchangeMaxNumAlgoOrders,
+        [EnumMember(Value = "EXCHANGE_MAX_NUM_ICEBERG_ORDERS")]
+        ExchangeMaxNumIcebergOrders
         #endregion
-        [EnumMember(Value = "PERCENTAGE_PRICE")]
-        PercentagePrice,
-
     }
 }
