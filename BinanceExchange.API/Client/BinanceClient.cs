@@ -279,7 +279,6 @@ namespace BinanceExchange.API.Client
             Guard.AgainstNull(request.Symbol);
             Guard.AgainstNull(request.Side);
             Guard.AgainstNull(request.Type);
-            Guard.AgainstNull(request.Quantity);
 
             return await _apiProcessor.ProcessPostRequest<EmptyResponse>(Endpoints.Account.NewOrderTest(request));
         }
