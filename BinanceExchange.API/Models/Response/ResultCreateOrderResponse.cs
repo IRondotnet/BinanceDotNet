@@ -23,21 +23,24 @@ namespace BinanceExchange.API.Models.Response
         [JsonProperty(PropertyName = "executedQty")]
         public decimal ExecutedQuantity { get; set; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
         [DataMember(Order = 7)]
-        public OrderStatus Status { get; set; }
+        [JsonProperty(PropertyName = "cummulativeQuoteQty")]
+        public decimal CummulativeQuoteQuantity { get; set; }
 
-        [DataMember(Order = 8)]
         [JsonConverter(typeof(StringEnumConverter))]
-        public OrderSide Side { get; set; }
+        [DataMember(Order = 8)]
+        public OrderStatus Status { get; set; }
 
         [DataMember(Order = 9)]
         [JsonConverter(typeof(StringEnumConverter))]
-        public OrderType Type { get; set; }
+        public OrderSide Side { get; set; }
 
         [DataMember(Order = 10)]
         [JsonConverter(typeof(StringEnumConverter))]
-        public TimeInForce? TimeInForce { get; set; }
+        public OrderType Type { get; set; }
 
+        [DataMember(Order = 11)]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public TimeInForce? TimeInForce { get; set; }
     }
 }

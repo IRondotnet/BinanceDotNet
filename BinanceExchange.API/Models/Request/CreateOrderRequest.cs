@@ -30,25 +30,29 @@ namespace BinanceExchange.API.Models.Request
 
         [DataMember(Order = 5)]
         [JsonConverter(typeof(StringDecimalConverter))]
-        public decimal Quantity { get; set; }
+        public decimal? Quantity { get; set; }
 
         [DataMember(Order = 6)]
         [JsonConverter(typeof(StringDecimalConverter))]
-        public decimal? Price { get; set; }
+        public decimal? QuoteOrderQuantity { get; set; }
 
         [DataMember(Order = 7)]
-        public string NewClientOrderId { get; set; }
+        [JsonConverter(typeof(StringDecimalConverter))]
+        public decimal? Price { get; set; }
 
         [DataMember(Order = 8)]
+        public string NewClientOrderId { get; set; }
+
+        [DataMember(Order = 9)]
         [JsonConverter(typeof(StringDecimalConverter))]
         public decimal? StopPrice { get; set; }
 
-        [DataMember(Order = 9)]
+        [DataMember(Order = 10)]
         [JsonProperty("icebergQty")]
         [JsonConverter(typeof(StringDecimalConverter))]
         public decimal? IcebergQuantity { get; set; }
 
-        [DataMember(Order = 10)]
+        [DataMember(Order = 11)]
         [JsonProperty("newOrderRespType")]
         [JsonConverter(typeof(StringEnumConverter))]
         public NewOrderResponseType NewOrderResponseType { get; set; }
