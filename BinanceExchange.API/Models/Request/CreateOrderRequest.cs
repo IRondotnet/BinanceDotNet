@@ -33,6 +33,7 @@ namespace BinanceExchange.API.Models.Request
         public decimal? Quantity { get; set; }
 
         [DataMember(Order = 6)]
+        [JsonProperty("quoteOrderQty")]
         [JsonConverter(typeof(StringDecimalConverter))]
         public decimal? QuoteOrderQuantity { get; set; }
 

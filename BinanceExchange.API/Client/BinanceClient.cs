@@ -255,7 +255,6 @@ namespace BinanceExchange.API.Client
             Guard.AgainstNull(request.Symbol);
             Guard.AgainstNull(request.Side);
             Guard.AgainstNull(request.Type);
-            Guard.AgainstNull(request.Quantity);
 
             switch (request.NewOrderResponseType)
             {
