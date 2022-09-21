@@ -71,7 +71,11 @@ namespace BinanceExchange.API.Converter
                     break;
             }
 
-            serializer.Populate(jObject.CreateReader(), item);
+            if (item != null)
+            {
+                serializer.Populate(jObject.CreateReader(), item);
+            }
+
             return item;
         }
 
